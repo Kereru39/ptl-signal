@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const posts = [
+  {
+    title: "Why I Built an AI Earnings Call Analyzer",
+    excerpt: "Most investors don't have time to read 50-page transcripts. So I built a tool that does it in seconds — here's the story behind it, what it does, and why I think every retail investor needs one.",
+    date: "01/03/2026",
+    tag: "AI",
+    slug: "why-i-built-earnings-analyzer"
+  },
+  {
+    title: "5 AI Tools Every Investor Should Know About",
+    excerpt: "From sentiment analysis to automated financial modelling, these tools are changing how smart money operates. Here are the five I use every week.",
+    date: "22/02/2026",
+    tag: "Tools",
+    slug: "5-ai-tools-for-investors"
+  },
+  {
+    title: "The Signal vs The Noise: Crypto Edition",
+    excerpt: "How to filter real market signals from social media hype. A framework for clearer thinking in volatile markets, based on data not emotion.",
+    date: "15/02/2026",
+    tag: "Crypto",
+    slug: "signal-vs-noise-crypto"
+  }
+];
+---
+
+<Base title="Blog">
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mb-10">
+      <span class="font-mono text-accent text-sm">// blog</span>
+      <h1 class="text-4xl font-bold mt-2">Blog</h1>
+      <p class="text-gray-400 mt-2">Deep dives, analysis, and insights on AI, markets, and crypto.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {posts.map(post => (
+        <BlogCard {...post} />
+      ))}
+    </div>
+  </section>
+</Base>

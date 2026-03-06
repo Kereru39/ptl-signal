@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+
+const videoIds = [
+  "LxL7fRV1N6U",
+  "eh0hKibH6Zs",
+  "Ig4uESNXKkA",
+  "QzRPBLa2_Do",
+  "iP1pC2bouco",
+  "wjrHDY_7nZQ",
+  "X_nQ7gUZ1Z4",
+  "CJ-LEujVqeU",
+  "CpL-_mTzK4w",
+  "X3cT70DE_aE",
+  "O_Cta0z6EaA",
+  "exdQN3RJQNs",
+  "DgKndggN-68",
+  "OFns2bmqrFg",
+  "Q-nWv0pcfZA",
+  "pFsbiQwMjW4",
+  "ts3yoTbYXOM",
+];
+---
+
+<Base title="Episodes">
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mb-10">
+      <span class="font-mono text-accent text-sm">// episodes</span>
+      <h1 class="text-4xl font-bold mt-2">All Episodes</h1>
+      <p class="text-gray-400 mt-2">AI, markets, crypto — the signals that matter, delivered weekly.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {videoIds.map(id => (
+        <div
+          class="rounded-xl overflow-hidden border border-white/10 hover:border-accent/30 transition-colors cursor-pointer relative group aspect-video bg-black"
+          data-video-id={id}
+        >
+          <img
+            src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+            alt=""
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-500 transition-colors shadow-lg">
+              <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll('[data-video-id]').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.getAttribute('data-video-id');
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.className = 'w-full h-full absolute inset-0';
+      iframe.style.border = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      card.innerHTML = '';
+      card.appendChild(iframe);
+    });
+  });
+</script>

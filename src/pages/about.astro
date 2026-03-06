@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="About Lisa Tamati and PTL Signal.">
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <div class="mb-10">
+      <span class="font-mono text-accent text-sm">// about</span>
+      <h1 class="text-4xl font-bold mt-2">About PTL Signal</h1>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      <!-- Bio -->
+      <div class="md:col-span-2 space-y-6 text-gray-300 leading-relaxed">
+        <p class="text-lg">
+          Lisa Tamati has spent 25 years pushing the limits — first as one of the world's most decorated
+          ultra-endurance athletes, competing in the planet's most brutal races across deserts, mountains,
+          and frozen tundra. Then, when her mother suffered a catastrophic brain aneurysm, Lisa turned that
+          same relentless drive toward cracking the code on human health and longevity.
+        </p>
+
+        <p class="text-xl text-white font-semibold">
+          Today she operates at the intersection of two sovereignty movements: health and wealth.
+        </p>
+
+        <p>
+          As a functional health practitioner, Chief Science Officer and co-founder of longevity biotech
+          <strong class="text-white">Aevum Labs</strong>, Lisa has spent over a decade helping people take
+          radical ownership of their biology. Her podcast, <strong class="text-white">Pushing The Limits</strong>
+          — 11 years running, over half a million downloads, globally top-ranked in functional medicine and
+          longevity — has become a trusted resource for people who refuse to accept decline as inevitable.
+        </p>
+
+        <p>
+          But Lisa's conviction runs deeper than biology. True self-sovereignty requires financial sovereignty.
+          In a world being reshaped by artificial intelligence, Bitcoin, and macro economic upheaval, the people
+          who understand these forces early will have options. The rest won't.
+        </p>
+
+        <p>
+          <strong class="text-white">PTL Signal</strong> is where those two worlds meet. Expect sharp analysis
+          of AI, emerging tech, crypto, and macro trends — filtered through the same evidence-based, no-BS lens
+          Lisa applies to health. Plus tools like the
+          <a href="/earnings-analyzer" class="text-accent hover:underline">Earnings Call Analyzer</a>, built to
+          give independent investors the kind of intelligence previously reserved for hedge funds.
+        </p>
+
+        <p>
+          Lisa is also the author of four bestselling books including <em>Relentless</em>, a sought-after
+          international speaker, documentary filmmaker, and former television host based in New Zealand.
+        </p>
+
+        <p>
+          Her full health and longevity work lives at
+          <a href="https://lisatamati.com" target="_blank" class="text-accent hover:underline">lisatamati.com</a>.
+        </p>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-6">
+        <div class="bg-navy-light border border-white/10 rounded-xl p-6">
+          <h3 class="font-mono text-accent text-sm mb-4">// connect</h3>
+          <div class="space-y-3 text-sm">
+            <a href="https://www.youtube.com/@LisaTamati" target="_blank"
+              class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+              <span>YouTube</span>
+            </a>
+            <a href="https://lisatamati.com" target="_blank"
+              class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+              <span>lisatamati.com</span>
+            </a>
+            <a href="https://shop.lisatamati.com" target="_blank"
+              class="flex items-center gap-2 text-gray-300 hover:text-accent transition-colors">
+              <span>Supplement Store</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-navy-light border border-white/10 rounded-xl p-6">
+          <h3 class="font-mono text-accent text-sm mb-4">// topics</h3>
+          <div class="flex flex-wrap gap-2">
+            {['AI', 'Crypto', 'Markets', 'Tech', 'Investing', 'DeFi', 'Earnings'].map(tag => (
+              <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

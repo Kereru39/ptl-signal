@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+
+const features = [
+  {
+    icon: "⚡",
+    title: "Instant Analysis",
+    description: "Upload an earnings call transcript and get key insights in under 60 seconds."
+  },
+  {
+    icon: "📊",
+    title: "Sentiment Detection",
+    description: "AI-powered sentiment analysis catches what the numbers don't — management confidence, hedging language, and red flags."
+  },
+  {
+    icon: "🎯",
+    title: "Key Metrics Extraction",
+    description: "Revenue, guidance, margins, and growth figures pulled out and summarised automatically."
+  },
+  {
+    icon: "🔔",
+    title: "Signal Alerts",
+    description: "Get notified when companies you follow report earnings, with analysis delivered straight to your inbox."
+  }
+];
+---
+
+<Base title="Earnings Call Analyzer" description="AI-powered earnings call analysis. Get the signals that matter in seconds.">
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-24">
+    <div class="absolute inset-0 opacity-5"
+      style="background-image: radial-gradient(circle at 50% 50%, rgba(0,212,170,0.4) 0%, transparent 50%);">
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <div class="inline-block mb-6 px-4 py-1 border border-accent/30 rounded-full">
+        <span class="font-mono text-accent text-sm">// early access</span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+        Earnings Call<br/><span class="text-accent">Analyzer</span>
+      </h1>
+
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+        AI-powered analysis of earnings call transcripts. Get the signals that matter in seconds, not hours.
+      </p>
+
+      <!-- Email signup -->
+      <div class="max-w-md mx-auto">
+        <form class="flex gap-3" onsubmit="event.preventDefault();">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="flex-1 bg-navy-light border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-gray-400 focus:outline-none focus:border-accent"
+          />
+          <button type="submit" class="bg-accent text-navy font-semibold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors whitespace-nowrap">
+            Get Access
+          </button>
+        </form>
+        <p class="text-gray-400 text-xs mt-3">Join the waitlist. No spam, ever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-6">
+      {features.map(feature => (
+        <div class="bg-navy-light border border-white/10 rounded-xl p-6 hover:border-accent/20 transition-colors">
+          <span class="text-3xl">{feature.icon}</span>
+          <h3 class="text-lg font-semibold mt-3">{feature.title}</h3>
+          <p class="text-gray-400 text-sm mt-2">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold text-center mb-12">
+      <span class="font-mono text-accent">//</span> How It Works
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-mono text-accent font-bold">1</div>
+        <h3 class="font-semibold mt-4">Upload Transcript</h3>
+        <p class="text-gray-400 text-sm mt-2">Paste or upload an earnings call transcript from any public company.</p>
+      </div>
+      <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-mono text-accent font-bold">2</div>
+        <h3 class="font-semibold mt-4">AI Analysis</h3>
+        <p class="text-gray-400 text-sm mt-2">Our AI extracts key metrics, sentiment, risks, and opportunities.</p>
+      </div>
+      <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-mono text-accent font-bold">3</div>
+        <h3 class="font-semibold mt-4">Get Signals</h3>
+        <p class="text-gray-400 text-sm mt-2">Receive a clear, actionable summary with the signals that matter.</p>
+      </div>
+    </div>
+  </section>
+</Base>
