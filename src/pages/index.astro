@@ -38,16 +38,17 @@ const blogPosts = [
   <Hero />
 
   <!-- Featured Episodes -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold">
-        <span class="font-mono text-accent">//</span> Latest Episodes
-      </h2>
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <span class="font-mono text-accent text-sm">// latest episodes</span>
+        <h2 class="text-3xl font-bold mt-1">Latest Episodes</h2>
+      </div>
       <a href="/episodes" class="text-accent text-sm font-mono hover:underline">View all &rarr;</a>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
       {featuredVideoIds.map(id => (
-        <div class="rounded-xl overflow-hidden border border-white/10 aspect-video">
+        <div class="rounded-xl overflow-hidden border border-white/10 hover:border-accent/30 transition-colors aspect-video shadow-[0_0_20px_rgba(0,212,170,0.05)]">
           <iframe
             src={`https://www.youtube.com/embed/${id}?rel=0`}
             class="w-full h-full"
@@ -61,11 +62,12 @@ const blogPosts = [
   </section>
 
   <!-- Blog Preview -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold">
-        <span class="font-mono text-accent">//</span> Latest Posts
-      </h2>
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <span class="font-mono text-accent text-sm">// latest posts</span>
+        <h2 class="text-3xl font-bold mt-1">Latest Posts</h2>
+      </div>
       <a href="/blog" class="text-accent text-sm font-mono hover:underline">View all &rarr;</a>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
@@ -76,18 +78,19 @@ const blogPosts = [
   </section>
 
   <!-- Earnings Analyzer Promo -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <div class="relative bg-navy-light border border-accent/20 rounded-2xl p-8 md:p-12 overflow-hidden">
-      <!-- Background glow -->
-      <div class="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="relative bg-navy-light border border-accent/20 rounded-2xl p-10 md:p-14 overflow-hidden">
+      <!-- Background glows -->
+      <div class="absolute top-0 right-0 w-80 h-80 bg-accent/8 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
 
       <div class="relative">
         <span class="font-mono text-accent text-sm">// new tool</span>
-        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Earnings Call Analyzer</h2>
-        <p class="text-gray-300 max-w-xl mb-6 text-lg">
+        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Financial Document Analyzer</h2>
+        <p class="text-gray-300 max-w-xl mb-8 text-lg leading-relaxed">
           Paste any financial document — earnings call transcripts, annual reports, Fed minutes, analyst reports, CEO letters, investor presentations — and get institutional-grade AI analysis in seconds. Free for founding members.
         </p>
-        <a href="/earnings-analyzer" class="inline-block bg-accent text-navy font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors">
+        <a href="/earnings-analyzer" class="inline-block bg-accent text-navy font-bold px-8 py-4 rounded-lg hover:bg-accent-dark transition-colors text-lg">
           Get Free Access — Founding Member
         </a>
       </div>
