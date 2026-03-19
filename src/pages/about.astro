@@ -3,7 +3,19 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="About" description="About Lisa Tamati and PTL Signal.">
-  <section class="max-w-4xl mx-auto px-4 py-16">
+  <!-- Hero photo -->
+  <section class="max-w-4xl mx-auto px-4 pt-16 pb-8 flex justify-center">
+    <div class="rounded-2xl overflow-hidden border-2 border-accent/40 shadow-[0_0_40px_rgba(0,212,170,0.15)] w-full max-w-sm">
+      <img
+        src="/lisa-tamati.jpg"
+        alt="Lisa Tamati"
+        class="w-full object-cover object-top"
+        style="max-height: 480px;"
+      />
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 py-8">
     <div class="mb-10">
       <span class="font-mono text-accent text-sm">// about</span>
       <h1 class="text-4xl font-bold mt-2">About PTL Signal</h1>
@@ -41,7 +53,7 @@ import Base from '../layouts/Base.astro';
           <strong class="text-white">PTL Signal</strong> is where those two worlds meet. Expect sharp analysis
           of AI, emerging tech, crypto, and macro trends — filtered through the same evidence-based, no-BS lens
           Lisa applies to health. Plus tools like the
-          <a href="/earnings-analyzer" class="text-accent hover:underline">Earnings Call Analyzer</a>, built to
+          <a href="/earnings-analyzer" class="text-accent hover:underline">Financial Document Analyzer</a>, built to
           give independent investors the kind of intelligence previously reserved for hedge funds.
         </p>
 
