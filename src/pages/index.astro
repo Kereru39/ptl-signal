@@ -1,28 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import EpisodeCard from '../components/EpisodeCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 
-const featuredEpisodes = [
-  {
-    title: "AI Agents Are About to Change Everything",
-    videoId: "dQw4w9WgXcQ",
-    description: "We break down why 2026 is the year AI agents go mainstream — and what it means for investors and builders.",
-    date: "28/02/2026"
-  },
-  {
-    title: "Bitcoin's Next Move: On-Chain Signals",
-    videoId: "dQw4w9WgXcQ",
-    description: "Analysing the on-chain data and macro signals pointing to Bitcoin's next major trend.",
-    date: "21/02/2026"
-  },
-  {
-    title: "NVIDIA Earnings Deep Dive",
-    videoId: "dQw4w9WgXcQ",
-    description: "Our Earnings Call Analyzer breaks down NVIDIA's latest results. Here's what the market missed.",
-    date: "14/02/2026"
-  }
+const featuredVideoIds = [
+  "1P1Ss9Hd_6M",
+  "ts3yoTbYXOM",
+  "pFsbiQwMjW4",
 ];
 
 const blogPosts = [
@@ -62,8 +46,16 @@ const blogPosts = [
       <a href="/episodes" class="text-accent text-sm font-mono hover:underline">View all &rarr;</a>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
-      {featuredEpisodes.map(ep => (
-        <EpisodeCard {...ep} />
+      {featuredVideoIds.map(id => (
+        <div class="rounded-xl overflow-hidden border border-white/10 aspect-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${id}?rel=0`}
+            class="w-full h-full"
+            style="border:0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       ))}
     </div>
   </section>
@@ -93,10 +85,10 @@ const blogPosts = [
         <span class="font-mono text-accent text-sm">// new tool</span>
         <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Earnings Call Analyzer</h2>
         <p class="text-gray-300 max-w-xl mb-6 text-lg">
-          AI-powered analysis of earnings call transcripts. Get the signals that matter in seconds, not hours.
+          Paste any financial document — earnings call transcripts, annual reports, Fed minutes, analyst reports, CEO letters, investor presentations — and get institutional-grade AI analysis in seconds. Free for founding members.
         </p>
         <a href="/earnings-analyzer" class="inline-block bg-accent text-navy font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors">
-          Get Early Access
+          Get Free Access — Founding Member
         </a>
       </div>
     </div>
