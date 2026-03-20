@@ -1,0 +1,171 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Why I Built the Earnings Call Analyzer (And Why You Need It)"
+  description="I'm not a Wall Street analyst. I'm a former ultra-endurance athlete from New Zealand. So what the hell am I doing building financial intelligence tools?"
+>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+
+    <!-- Back link -->
+    <a href="/blog" class="inline-flex items-center gap-2 font-mono text-accent text-sm hover:underline mb-10 block">
+      &larr; Back to all posts
+    </a>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <div class="flex flex-wrap gap-3 items-center mb-4">
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">AI</span>
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">Tools</span>
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">Investing</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        Why I Built the Earnings Call Analyzer (And Why You Need It)
+      </h1>
+      <div class="flex items-center gap-4 text-gray-400 text-sm border-t border-white/10 pt-6">
+        <span>Lisa Tamati</span>
+        <span class="text-white/20">|</span>
+        <span>20/03/2026</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="space-y-6 text-gray-300 leading-relaxed">
+
+      <p class="text-xl text-gray-200 leading-relaxed font-light">
+        I'm not a Wall Street analyst. I'm a former ultra-endurance athlete turned longevity practitioner from Taranaki, New Zealand. So what the hell am I doing building financial intelligence tools?
+      </p>
+
+      <p>Let me tell you exactly how it happened.</p>
+
+      <p>
+        About a year ago I started seriously following Jordi Visser. Thirty years on Wall Street, macro genius, AI early adopter, and — it turns out — as obsessed with HRV and longevity as I am. When Jordi talks, serious investors listen. And I was listening hard.
+      </p>
+
+      <p class="text-white font-semibold text-lg">The problem? I couldn't keep up.</p>
+
+      <p>
+        Jordi puts out videos, Substacks, podcasts, market analysis — weekly. Dense, brilliant, packed with signals. He'll reference IWMs and PMIs and private credit contagion and the turbulence model and Bitcoin's next supercycle all in the same breath. I'd finish a video genuinely energised but half-confused, knowing there were gems in there I'd missed.
+      </p>
+
+      <p>So I did what any slightly unhinged entrepreneur would do. I built a tool to fix it.</p>
+
+      <h2 class="text-2xl font-bold text-white pt-6">The Problem With Financial Research</h2>
+
+      <p>
+        Here's the reality for anyone who isn't a professional investor: the information exists. The insights are out there — in earnings call transcripts, in annual reports, in Fed minutes, in CEO interviews, in analyst letters, in the podcasts of people like Jordi. The raw material is abundant.
+      </p>
+
+      <p class="text-white font-semibold">What's scarce is time and the ability to synthesise it.</p>
+
+      <p>
+        A junior analyst at a hedge fund gets paid six figures to sit with a 50-page earnings transcript and pull out the signals — the guidance changes, the evasive language, the things management didn't say, the tone shifts that reveal what's really going on. They build trade theses from it. They identify options setups. They connect the dots.
+      </p>
+
+      <p>
+        Most of us don't have that analyst. And even if we did, by the time they've done their work, the opportunity has often moved.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white pt-6">What the Earnings Call Analyzer Actually Does</h2>
+
+      <p>
+        I built this tool powered by the most powerful AI intelligence available — Claude — and I trained it to think like that hedge fund analyst.
+      </p>
+
+      <p>
+        You paste in any financial document. An earnings call transcript. An annual report. A Fed statement. An investment podcast transcript. A macro analyst's video. Jordi's latest Substack. Whatever you're trying to get intelligence from.
+      </p>
+
+      <p>In under 60 seconds, you get:</p>
+
+      <ul class="space-y-3 pl-2">
+        {[
+          ["The executive summary", "what actually matters, stripped of the noise"],
+          ["Trade ideas", "specific long/short setups with entry zones, targets, and stop losses"],
+          ["Options strategies", "spreads, straddles, directional plays with specific strikes and expirations"],
+          ["Investment signals", "bullish, bearish, and neutral, with conviction ratings and the exact quote that supports each one"],
+          ["Red flags", "the evasive language, the guidance manipulation, the things that weren't said"],
+          ["Sentiment analysis", "management confidence scoring, spin vs substance, credibility assessment"],
+          ["Macro implications", "what this means for rates, commodities, cross-asset positioning"],
+          ["Q&A analysis", "what they avoided answering and what that tells you"],
+        ].map(([title, desc]) => (
+          <li class="flex gap-3">
+            <span class="text-accent font-mono mt-0.5 shrink-0">→</span>
+            <span><strong class="text-white">{title}</strong> — {desc}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p>
+        This is what I now do with every Jordi Visser video. I get the transcript, I drop it in, and within a minute I have the actionable intel — the trades to consider, the key macro signals, the underlying tone. I understand what he's saying even when the Wall Street jargon flies past me. And I can actually act on it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white pt-6">It's Not Just Earnings Calls</h2>
+
+      <p>
+        Despite the name, this tool works on any text-based financial content. I use it on:
+      </p>
+
+      <ul class="space-y-2 pl-2">
+        {[
+          "Podcast transcripts from Jordi, Cern Basher, Anthony Pompliano, Jason Calacanis",
+          "Investment letters and Substacks",
+          "Annual reports and 10-Ks",
+          "Fed minutes and central bank statements",
+          "CEO interviews and analyst day transcripts",
+          "Any financial document where the signal is buried in the noise",
+        ].map(item => (
+          <li class="flex gap-3 text-gray-300">
+            <span class="text-accent font-mono mt-0.5 shrink-0">→</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p>The name stuck because that's where it started — but the use case is much broader.</p>
+
+      <h2 class="text-2xl font-bold text-white pt-6">Why Free for Founding Members</h2>
+
+      <p>
+        I'm giving free access to the first founding members for one reason: I want real users, real feedback, and real word of mouth from people who actually use it.
+      </p>
+
+      <p>
+        This isn't a finished product. It's a powerful, functional tool that I use myself every week — but it'll get better with your input. Founding members get unlimited access, a lifetime free tier, and the satisfaction of being part of building something genuinely useful.
+      </p>
+
+      <p>
+        In return, I want your honest feedback. Tell me what's missing. Tell me what's brilliant. Tell me what confused you.
+      </p>
+
+      <p class="text-white font-semibold text-lg">
+        The tool that helped me stop drowning in financial noise is now yours.
+      </p>
+
+    </div>
+
+    <!-- Author bio -->
+    <div class="mt-14 pt-8 border-t border-white/10 text-gray-400 text-sm italic">
+      Lisa Tamati is an ultra-endurance athlete, longevity practitioner, Chief Science Officer of Aevum Labs, and host of Pushing The Limits podcast. She builds tools she actually needs.
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 bg-navy-light border border-accent/20 rounded-2xl p-10 text-center">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+      <p class="text-white text-2xl font-bold mb-3">Try It Free — Founding Member Access</p>
+      <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">
+        Paste any financial document and get institutional-grade AI analysis in seconds. Free for founding members, no credit card required.
+      </p>
+      <a
+        href="https://www.earningscallanalyzer.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-accent text-navy font-bold px-10 py-4 rounded-lg hover:bg-accent-dark transition-colors text-lg"
+      >
+        Get Free Founding Member Access &rarr;
+      </a>
+    </div>
+
+  </article>
+</Base>
