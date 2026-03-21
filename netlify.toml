@@ -1,3 +1,21 @@
 [build]
-  command = "npm run build"
+  # IMPORTANT: This stops Netlify from building unless you add [deploy] to your commit message.
+  # This prevents a "Push = -15 Credits" loop.
+  ignore = "git log -1 --pretty=%B | grep -qv '\\[deploy\\]'"
   publish = "dist"
+  command = "npm run build"
+
+[context.production]
+  # Disables the automatic "Main" branch deployment
+  auto_deploy = false
+
+[context.deploy-preview]
+  # Keep this ON. Preview links are FREE (0 credits).
+  # Use these to check your work before spending money.
+  auto_deploy = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Tell browsers to cache images for a long time to save your Bandwidth Credits
+    Cache-Control = "public, max-age=31536000, immutable"
