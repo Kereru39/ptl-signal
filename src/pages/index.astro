@@ -2,12 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import BlogCard from '../components/BlogCard.astro';
+import { videoIds } from '../data/episodes.js';
 
-const featuredVideoIds = [
-  "1P1Ss9Hd_6M",
-  "ts3yoTbYXOM",
-  "pFsbiQwMjW4",
-];
+// Always shows the 3 most recent episodes — just add new ones to src/data/episodes.js
+const featuredVideoIds = videoIds.slice(0, 3);
 
 const blogPosts = [
   {
