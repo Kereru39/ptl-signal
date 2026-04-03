@@ -1,6 +1,7 @@
 // Single source of truth for all episodes.
 // Add new episodes at the TOP — homepage automatically shows the first 3.
 export const videoIds = [
+  "QM0TedNHsxA",
   "kXvvyYE6oE0",
   "1P1Ss9Hd_6M",
   "LxL7fRV1N6U",
