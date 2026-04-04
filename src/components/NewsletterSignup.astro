@@ -1,6 +1,6 @@
 ---
 // NewsletterSignup.astro
-// Reusable MailerLite signup form component.
+// Uses the real MailerLite embed structure — their JS handles submission.
 // variant: 'homepage' | 'blog' | 'footer'
 interface Props {
   variant?: 'homepage' | 'blog' | 'footer';
@@ -16,21 +16,32 @@ const { variant = 'blog' } = Astro.props;
         <span class="font-mono text-accent text-sm">// newsletter</span>
         <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-3">Get the Signal. Skip the Noise.</h2>
         <p class="text-gray-400 mb-8 text-lg">Weekly AI, Bitcoin &amp; market analysis from Lisa Tamati. Free.</p>
-        <form class="ml-signup-form flex flex-col sm:flex-row gap-3 max-w-md mx-auto" data-variant="homepage">
-          <input
-            type="email"
-            name="fields[email]"
-            placeholder="Your email address"
-            required
-            class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-3 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
-          />
-          <input type="hidden" name="ml-submit" value="1" />
-          <input type="hidden" name="anticsrf" value="true" />
-          <button type="submit" class="bg-accent text-navy font-bold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors whitespace-nowrap">
-            Subscribe
-          </button>
-        </form>
-        <p class="ml-status hidden text-accent font-mono text-sm mt-4"></p>
+        <div class="max-w-md mx-auto">
+          <div id="mlb2-39387468" class="ml-subscribe-form ml-subscribe-form-39387468">
+            <div class="row-form">
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/subscribe" data-code="" method="post" target="_blank">
+                <div class="ml-field-email-wrap flex flex-col sm:flex-row gap-3">
+                  <input
+                    aria-label="email"
+                    type="email"
+                    name="fields[email]"
+                    class="form-control ml-email-input flex-1"
+                    placeholder="Your email address"
+                    autocomplete="email"
+                    required
+                  />
+                  <input type="hidden" name="ml-submit" value="1" />
+                  <input type="hidden" name="anticsrf" value="true" />
+                  <button type="submit" class="ml-submit-btn">Subscribe</button>
+                  <button disabled type="button" class="ml-loading-btn" style="display:none">Subscribing…</button>
+                </div>
+              </form>
+            </div>
+            <div class="row-success" style="display:none">
+              <p class="text-accent font-mono text-sm mt-4">You're in. Check your inbox. ✓</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -41,21 +52,30 @@ const { variant = 'blog' } = Astro.props;
     <p class="font-mono text-accent text-xs mb-2">// newsletter</p>
     <p class="text-white text-xl font-bold mb-1">Want more like this?</p>
     <p class="text-gray-400 text-sm mb-6">Join the PTL Signal newsletter. Weekly AI, Bitcoin &amp; market analysis from Lisa Tamati.</p>
-    <form class="ml-signup-form flex flex-col sm:flex-row gap-3 max-w-sm" data-variant="blog">
-      <input
-        type="email"
-        name="fields[email]"
-        placeholder="Your email address"
-        required
-        class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-3 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
-      />
-      <input type="hidden" name="ml-submit" value="1" />
-      <input type="hidden" name="anticsrf" value="true" />
-      <button type="submit" class="bg-accent text-navy font-bold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors whitespace-nowrap">
-        Subscribe
-      </button>
-    </form>
-    <p class="ml-status hidden text-accent font-mono text-sm mt-4"></p>
+    <div id="mlb2-39387468" class="ml-subscribe-form ml-subscribe-form-39387468">
+      <div class="row-form">
+        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/subscribe" data-code="" method="post" target="_blank">
+          <div class="ml-field-email-wrap flex flex-col sm:flex-row gap-3 max-w-sm">
+            <input
+              aria-label="email"
+              type="email"
+              name="fields[email]"
+              class="form-control ml-email-input flex-1"
+              placeholder="Your email address"
+              autocomplete="email"
+              required
+            />
+            <input type="hidden" name="ml-submit" value="1" />
+            <input type="hidden" name="anticsrf" value="true" />
+            <button type="submit" class="ml-submit-btn">Subscribe</button>
+            <button disabled type="button" class="ml-loading-btn" style="display:none">Subscribing…</button>
+          </div>
+        </form>
+      </div>
+      <div class="row-success" style="display:none">
+        <p class="text-accent font-mono text-sm mt-4">You're in. Check your inbox. ✓</p>
+      </div>
+    </div>
   </div>
 )}
 
@@ -64,70 +84,112 @@ const { variant = 'blog' } = Astro.props;
     <div class="max-w-6xl mx-auto px-4 py-8">
       <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
         <p class="text-gray-300 text-sm font-medium whitespace-nowrap">Join the PTL Signal newsletter</p>
-        <form class="ml-signup-form flex flex-1 gap-3 max-w-md" data-variant="footer">
-          <input
-            type="email"
-            name="fields[email]"
-            placeholder="Your email address"
-            required
-            class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-2.5 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
-          />
-          <input type="hidden" name="ml-submit" value="1" />
-          <input type="hidden" name="anticsrf" value="true" />
-          <button type="submit" class="bg-accent text-navy font-bold px-5 py-2.5 rounded-lg hover:bg-accent-dark transition-colors text-sm whitespace-nowrap">
-            Subscribe
-          </button>
-        </form>
-        <p class="ml-status hidden text-accent font-mono text-xs"></p>
+        <div id="mlb2-39387468" class="ml-subscribe-form ml-subscribe-form-39387468 flex-1">
+          <div class="row-form">
+            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/subscribe" data-code="" method="post" target="_blank">
+              <div class="ml-field-email-wrap flex gap-3 max-w-md">
+                <input
+                  aria-label="email"
+                  type="email"
+                  name="fields[email]"
+                  class="form-control ml-email-input flex-1"
+                  placeholder="Your email address"
+                  autocomplete="email"
+                  required
+                />
+                <input type="hidden" name="ml-submit" value="1" />
+                <input type="hidden" name="anticsrf" value="true" />
+                <button type="submit" class="ml-submit-btn ml-submit-btn-sm">Subscribe</button>
+                <button disabled type="button" class="ml-loading-btn ml-submit-btn-sm" style="display:none">Subscribing…</button>
+              </div>
+            </form>
+          </div>
+          <div class="row-success" style="display:none">
+            <p class="text-accent font-mono text-xs mt-2">You're in. Check your inbox. ✓</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 )}
 
-<script>
-  // Handle MailerLite signup forms via JSONP
-  document.querySelectorAll<HTMLFormElement>('.ml-signup-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const emailInput = form.querySelector<HTMLInputElement>('input[type=email]');
-      const email = emailInput?.value.trim();
-      if (!email) return;
+<!-- MailerLite scripts — loaded once per page via the _mlLoaded guard -->
+<script is:inline>
+  (function() {
+    if (window._mlFormsLoaded) return;
+    window._mlFormsLoaded = true;
 
-      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
-      const status = form.parentElement?.querySelector<HTMLElement>('.ml-status');
-
-      if (btn) { btn.textContent = 'Subscribing...'; btn.disabled = true; }
-
-      // JSONP submission to MailerLite
-      const callbackName = 'mlCb' + Date.now();
-      (window as any)[callbackName] = function(data: any) {
-        delete (window as any)[callbackName];
-        script.remove();
-        if (status) {
-          status.textContent = "You're in. Check your inbox.";
-          status.classList.remove('hidden');
-        }
-        form.classList.add('hidden');
-      };
-
-      const script = document.createElement('script');
-      const params = new URLSearchParams({
-        'fields[email]': email,
-        'ml-submit': '1',
-        'anticsrf': 'true',
-        'callback': callbackName,
+    // Success callback MailerLite's JS will call after successful submission
+    window.ml_webform_success_39387468 = function() {
+      document.querySelectorAll('.ml-subscribe-form-39387468 .row-form').forEach(function(el) {
+        el.style.display = 'none';
       });
-      script.src = 'https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/subscribe?' + params.toString();
-      script.onerror = () => {
-        script.remove();
-        delete (window as any)[callbackName];
-        if (btn) { btn.textContent = 'Subscribe'; btn.disabled = false; }
-        if (status) {
-          status.textContent = 'Something went wrong. Please try again.';
-          status.classList.remove('hidden');
-        }
-      };
-      document.head.appendChild(script);
-    });
-  });
+      document.querySelectorAll('.ml-subscribe-form-39387468 .row-success').forEach(function(el) {
+        el.style.display = 'block';
+      });
+    };
+
+    // Load MailerLite webforms JS
+    var s = document.createElement('script');
+    s.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b';
+    s.type = 'text/javascript';
+    document.head.appendChild(s);
+
+    // Required takel fetch
+    fetch('https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/takel');
+  })();
 </script>
+
+<style is:global>
+  /* Dark theme overrides for MailerLite form elements */
+  .ml-email-input {
+    background: #0a0f1e;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #d1d5db;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .ml-email-input::placeholder {
+    color: #6b7280;
+  }
+  .ml-email-input:focus {
+    border-color: rgba(0, 212, 170, 0.5);
+  }
+  .ml-submit-btn {
+    background: #00d4aa;
+    color: #0a0f1e;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    transition: background 0.2s;
+  }
+  .ml-submit-btn:hover {
+    background: #00b894;
+  }
+  .ml-submit-btn-sm {
+    padding: 0.625rem 1.25rem;
+  }
+  .ml-loading-btn {
+    background: #00d4aa;
+    color: #0a0f1e;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  /* Hide any default MailerLite styles that might bleed through */
+  .ml-subscribe-form .ml-block-form { margin: 0; }
+  .ml-subscribe-form input.form-control { box-shadow: none; }
+</style>
