@@ -1,0 +1,133 @@
+---
+// NewsletterSignup.astro
+// Reusable MailerLite signup form component.
+// variant: 'homepage' | 'blog' | 'footer'
+interface Props {
+  variant?: 'homepage' | 'blog' | 'footer';
+}
+const { variant = 'blog' } = Astro.props;
+---
+
+{variant === 'homepage' && (
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="relative bg-navy-light border border-accent/20 rounded-2xl p-10 md:p-14 overflow-hidden text-center">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-64 bg-accent/8 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative">
+        <span class="font-mono text-accent text-sm">// newsletter</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-3">Get the Signal. Skip the Noise.</h2>
+        <p class="text-gray-400 mb-8 text-lg">Weekly AI, Bitcoin &amp; market analysis from Lisa Tamati. Free.</p>
+        <form class="ml-signup-form flex flex-col sm:flex-row gap-3 max-w-md mx-auto" data-variant="homepage">
+          <input
+            type="email"
+            name="fields[email]"
+            placeholder="Your email address"
+            required
+            class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-3 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
+          />
+          <input type="hidden" name="ml-submit" value="1" />
+          <input type="hidden" name="anticsrf" value="true" />
+          <button type="submit" class="bg-accent text-navy font-bold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+        <p class="ml-status hidden text-accent font-mono text-sm mt-4"></p>
+      </div>
+    </div>
+  </section>
+)}
+
+{variant === 'blog' && (
+  <div class="mt-12 bg-navy-light border border-accent/20 rounded-2xl p-8 md:p-10">
+    <p class="font-mono text-accent text-xs mb-2">// newsletter</p>
+    <p class="text-white text-xl font-bold mb-1">Want more like this?</p>
+    <p class="text-gray-400 text-sm mb-6">Join the PTL Signal newsletter. Weekly AI, Bitcoin &amp; market analysis from Lisa Tamati.</p>
+    <form class="ml-signup-form flex flex-col sm:flex-row gap-3 max-w-sm" data-variant="blog">
+      <input
+        type="email"
+        name="fields[email]"
+        placeholder="Your email address"
+        required
+        class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-3 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
+      />
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit" class="bg-accent text-navy font-bold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors whitespace-nowrap">
+        Subscribe
+      </button>
+    </form>
+    <p class="ml-status hidden text-accent font-mono text-sm mt-4"></p>
+  </div>
+)}
+
+{variant === 'footer' && (
+  <div class="border-t border-white/10 mt-20 bg-navy-light">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <p class="text-gray-300 text-sm font-medium whitespace-nowrap">Join the PTL Signal newsletter</p>
+        <form class="ml-signup-form flex flex-1 gap-3 max-w-md" data-variant="footer">
+          <input
+            type="email"
+            name="fields[email]"
+            placeholder="Your email address"
+            required
+            class="flex-1 bg-navy border border-white/20 rounded-lg px-4 py-2.5 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-accent/50 transition-colors"
+          />
+          <input type="hidden" name="ml-submit" value="1" />
+          <input type="hidden" name="anticsrf" value="true" />
+          <button type="submit" class="bg-accent text-navy font-bold px-5 py-2.5 rounded-lg hover:bg-accent-dark transition-colors text-sm whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+        <p class="ml-status hidden text-accent font-mono text-xs"></p>
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  // Handle MailerLite signup forms via JSONP
+  document.querySelectorAll<HTMLFormElement>('.ml-signup-form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector<HTMLInputElement>('input[type=email]');
+      const email = emailInput?.value.trim();
+      if (!email) return;
+
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
+      const status = form.parentElement?.querySelector<HTMLElement>('.ml-status');
+
+      if (btn) { btn.textContent = 'Subscribing...'; btn.disabled = true; }
+
+      // JSONP submission to MailerLite
+      const callbackName = 'mlCb' + Date.now();
+      (window as any)[callbackName] = function(data: any) {
+        delete (window as any)[callbackName];
+        script.remove();
+        if (status) {
+          status.textContent = "You're in. Check your inbox.";
+          status.classList.remove('hidden');
+        }
+        form.classList.add('hidden');
+      };
+
+      const script = document.createElement('script');
+      const params = new URLSearchParams({
+        'fields[email]': email,
+        'ml-submit': '1',
+        'anticsrf': 'true',
+        'callback': callbackName,
+      });
+      script.src = 'https://assets.mailerlite.com/jsonp/80279/forms/183689354553591350/subscribe?' + params.toString();
+      script.onerror = () => {
+        script.remove();
+        delete (window as any)[callbackName];
+        if (btn) { btn.textContent = 'Subscribe'; btn.disabled = false; }
+        if (status) {
+          status.textContent = 'Something went wrong. Please try again.';
+          status.classList.remove('hidden');
+        }
+      };
+      document.head.appendChild(script);
+    });
+  });
+</script>
