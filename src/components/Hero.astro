@@ -1,56 +1,46 @@
 <section class="relative overflow-hidden min-h-[90vh] flex items-center">
 
-  <!-- Animated grid background -->
+  <!-- Full-width background image -->
+  <div class="absolute inset-0">
+    <img
+      src="/hero-bg.png"
+      alt=""
+      class="w-full h-full object-cover object-center"
+    />
+    <!-- Dark gradient overlay so text stays readable -->
+    <div class="absolute inset-0" style="background: linear-gradient(to right, #0a0f1e 35%, rgba(10,15,30,0.75) 65%, rgba(10,15,30,0.2) 100%)"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,15,30,0.5) 0%, transparent 50%)"></div>
+  </div>
+
+  <!-- Animated grid on top of image -->
   <div class="hero-grid absolute inset-0"></div>
 
-  <!-- Teal radial glow, left side -->
-  <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-accent/8 rounded-full blur-[120px] pointer-events-none"></div>
+  <!-- Content -->
+  <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-32 w-full">
+    <div class="max-w-2xl">
 
-  <!-- Teal radial glow, right side -->
-  <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-  <div class="relative max-w-6xl mx-auto px-4 py-20 md:py-28 w-full">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-
-      <!-- Left: Text -->
-      <div>
-        <div class="inline-block mb-6 px-4 py-1 border border-accent/30 rounded-full">
-          <span class="font-mono text-accent text-sm">// signal detected</span>
-        </div>
-
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Cutting Through<br/>
-          <span class="text-accent">The Noise</span>
-        </h1>
-
-        <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-lg">
-          AI, Tech, Bitcoin, Crypto, Markets — and the signals that matter
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/episodes"
-            class="bg-accent text-navy font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors text-center">
-            Watch Episodes
-          </a>
-          <a href="/earnings-analyzer"
-            class="border border-accent/50 text-accent px-8 py-3 rounded-lg hover:bg-accent/10 transition-colors text-center">
-            Get Free Analyzer Access
-          </a>
-        </div>
+      <div class="inline-block mb-6 px-4 py-1 border border-accent/30 rounded-full">
+        <span class="font-mono text-accent text-sm">// signal detected</span>
       </div>
 
-      <!-- Right: Lisa photo -->
-      <div class="flex justify-center md:justify-end">
-        <div class="relative">
-          <!-- Glow behind photo -->
-          <div class="absolute inset-0 bg-accent/15 rounded-2xl blur-2xl scale-95"></div>
-          <img
-            src="/lisa-hero.jpg"
-            alt="Lisa Tamati"
-            class="relative rounded-2xl border-2 border-accent/30 object-cover object-center w-full md:min-w-[500px]"
-            style="max-height: 600px;"
-          />
-        </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+        Cutting Through<br/>
+        <span class="text-accent">The Noise</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-lg">
+        AI, Tech, Bitcoin, Crypto, Markets — and the signals that matter
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/episodes"
+          class="bg-accent text-navy font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors text-center">
+          Watch Episodes
+        </a>
+        <a href="/earnings-analyzer"
+          class="border border-accent/50 text-accent px-8 py-3 rounded-lg hover:bg-accent/10 transition-colors text-center">
+          Get Free Analyzer Access
+        </a>
       </div>
 
     </div>
@@ -60,14 +50,14 @@
 <style>
   .hero-grid {
     background-image:
-      linear-gradient(rgba(0, 212, 170, 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 170, 0.07) 1px, transparent 1px);
+      linear-gradient(rgba(0, 212, 170, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 170, 0.04) 1px, transparent 1px);
     background-size: 48px 48px;
     animation: gridPulse 6s ease-in-out infinite;
   }
 
   @keyframes gridPulse {
-    0%, 100% { opacity: 0.6; }
+    0%, 100% { opacity: 0.5; }
     50%       { opacity: 1; }
   }
 </style>
