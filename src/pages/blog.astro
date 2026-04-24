@@ -2,157 +2,16 @@
 import Base from '../layouts/Base.astro';
 import BlogCard from '../components/BlogCard.astro';
 
-const posts = [
-  {
-    title: "The Exponential Future: Abundance vs. Politics — Friedberg & Williamson on Humanity's Next Chapter",
-    excerpt: "David Friedberg argues exponential convergence of AI, robotics, fusion, and biotech is transforming humanity — but warns that fear-based politics and wealth redistribution could sabotage everything.",
-    date: "24/04/2026",
-    tag: "AI",
-    slug: "friedberg-williamson-exponential-abundance",
-    image: "/blog/ptl-friedberg-williamson-exponential-tech.webp"
-  },
-  {
-    title: "The Compute Crisis: Why Structural Semiconductor Shortages Mean Bitcoin Becomes Infrastructure, Not Speculation",
-    excerpt: "Jordi Visser and Anthony Pompliano on AI inflation, supply-driven economics, and why the software abundance cycle is over. A regime shift that rewrites the playbook.",
-    date: "19/04/2026",
-    tag: "Macro",
-    slug: "visser-pompliano-compute-crisis-bitcoin",
-    image: "/blog/ptl-visser-pompliano-compute-scarcity.webp"
-  },
-  {
-    title: "AI Doesn't Take Your Job—It Makes You the CEO. But Only Within Trusted Tribes",
-    excerpt: "Balaji Srinivasan on why the internet is becoming like the Chinese internet, and what that means for work, privacy, and the future of AI collaboration.",
-    date: "19/04/2026",
-    tag: "AI",
-    slug: "balaji-ai-trusted-tribes-ceo",
-    image: "/blog/ptl-balaji-ai-trusted-tribes.png"
-  },
-  {
-    title: "The Fiscal Trap: James Lavish on Why Bitcoin Is the Only Rational Exit From a Debasing Dollar",
-    excerpt: "James Lavish — 25 years on Wall Street, COO of a $26 billion fund — argues the U.S. fiscal position is mathematically terminal. Here's why Bitcoin is the only rational exit.",
-    date: "18/04/2026",
-    tag: "Bitcoin",
-    slug: "james-lavish-fiscal-trap-bitcoin-exit",
-    image: "/blog/ptl-lavish-fiscal-dominance-bitcoin-exit.webp"
-  },
-  {
-    title: "PTL Signal: Simon Dixon on Government Capture, Bitcoin, and Individual Sovereignty",
-    excerpt: "Simon Dixon argues governments are fully captured by the financial industrial complex — and that self-custodied Bitcoin is the only real exit. Here's what landed.",
-    date: "18/04/2026",
-    tag: "Bitcoin",
-    slug: "simon-dixon-bitcoin-sovereignty",
-    image: "/blog/ptl-signal-bitcoin-sovereignty.png"
-  },
-  {
-    title: "Tesla's Distributed Brain: Why FSD 14.3 Is Just the Beginning of a Planetary-Scale AI Network",
-    excerpt: "FSD 14.3 isn't just another update. Tesla analyst Cern Basher explains why it marks the beginning of a planetary-scale distributed AI network spanning vehicles, robots, and space.",
-    date: "13/04/2026",
-    tag: "AI",
-    slug: "tesla-distributed-brain-fsd-robotaxi",
-    image: "/blog/tesla-distributed-brain-fsd-robotaxi.png"
-  },
-  {
-    title: "The Dozen Doublings: Why Salim Ismail Says We're Choosing Between Star Trek and Mad Max",
-    excerpt: "A dozen technologies are simultaneously doubling in capability while costs collapse toward zero. Salim Ismail argues this forces a civilizational choice: Star Trek or Mad Max.",
-    date: "10/04/2026",
-    tag: "AI",
-    slug: "dozen-doublings-salim-ismail-star-trek-mad-max",
-    image: "/blog/star-trek-mad-max-exponential-future.png"
-  },
-  {
-    title: "The Unwind: Why Jordi Visser Says We're in a Stagflationary Bear Market",
-    excerpt: "Jordi Visser isn't predicting a normal cyclical correction. He's arguing we've entered a stagflationary regime where Fed policy paralysis, AI disruption, and a 17-year credit unwind are converging — and traditional portfolios are failing.",
-    date: "10/04/2026",
-    tag: "Macro",
-    slug: "stagflation-bear-market-ai-credit-unwind",
-    image: "/blog/stagflation-credit-ai-unwind.png"
-  },
-  {
-    title: "The Fed's Trap: Why Jordi Visser Says Bitcoin Wins When Policy Fails",
-    excerpt: "Jordi Visser argues the Federal Reserve has lost the ability to fight inflation — trapped by debt levels that make the 1970s look like a golden age of fiscal discipline. Here's what that means for Bitcoin.",
-    date: "05/04/2026",
-    tag: "Macro",
-    slug: "fed-trap-bitcoin-policy-fails",
-    image: "/blog/fed-trap-bitcoin-ai-regime.png"
-  },
-  {
-    title: "The Regime Shift Nobody's Talking About: Why Jordi Visser Says We've Left the QE Era for Good",
-    excerpt: "Jordi Visser isn't predicting a recession. He's arguing something far more consequential: we've permanently exited the QE era, and most investors haven't adjusted because they don't realise the game has changed.",
-    date: "29/03/2026",
-    tag: "Macro",
-    slug: "jordi-visser-regime-shift-qe-era",
-    image: "/blog/visser-regime-shift-bitcoin-commodities.png"
-  },
-  {
-    title: "The Terrafab Gambit: When 50x Compute Meets the End of Human Driving",
-    excerpt: "Peter Diamandis, Dave Blundin, Alex Wiesner-Gross, and Salim Ismail unpack Elon's 1-terawatt compute play, the death of human driving, terminal value collapse, and machines that design machines.",
-    date: "28/03/2026",
-    tag: "AI",
-    slug: "terrafab-gambit-exponential-future",
-    image: "/blog/moonshots-exponential-future-mar2026.png"
-  },
-  {
-    title: "Physical AI Is Coming To Healthcare — And It's Closer Than You Think",
-    excerpt: "Humanoid robots are moving from factory floors into hospitals and aged care. The WHO projects a 10–15 million healthcare worker shortage by 2030. Here's why physical AI is the only answer that scales.",
-    date: "28/03/2026",
-    tag: "AI",
-    slug: "robots-in-healthcare",
-    image: "/blog/robots-in-healthcare.png"
-  },
-  {
-    title: "Why Oil Is Screaming 'Buy Bitcoin' — And the Smart Money Is Listening",
-    excerpt: "Oil broke down when every conventional analyst had $120+ penciled in. Stablecoins are flipping the payment infrastructure. AI agents are about to transact trillions on crypto rails. Here's what the panel sees that you don't.",
-    date: "27/03/2026",
-    tag: "Macro",
-    slug: "oil-screaming-buy-bitcoin",
-    image: "/blog/ptl-crypto-panel-mar26.png"
-  },
-  {
-    title: "Why Wall Street's Frozen While the Market Burns",
-    excerpt: "The S&P broke below its 200-day moving average. Credit markets are deteriorating. And sell-side analysts are paralysed. Jordi Visser explains the setup — and how to position.",
-    date: "24/03/2026",
-    tag: "Macro",
-    slug: "why-wall-street-frozen-market-burns",
-    image: "/blog/stagflation-jordi-visser.jpg"
-  },
-  {
-    title: "Stagflation 2.0: Why Jordi Visser Thinks This Is the 1970s With an AI Twist",
-    excerpt: "Jordi Visser believes we're walking into a 1970s-style stagflation environment — with one critical modern twist that makes this version stranger and harder for policymakers to navigate.",
-    date: "23/03/2026",
-    tag: "Macro",
-    slug: "stagflation-jordi-visser-1970s-bitcoin",
-    image: "/blog/stagflation-jordi-visser.jpg"
-  },
-  {
-    title: "The Humanoid Robot Inflection Point: Why This Is Happening Faster Than Anyone Thinks",
-    excerpt: "Humanoid robots are no longer a future concept. BMW has them on production lines. Tesla is converting factories to build them at scale. Here's what the timeline actually looks like.",
-    date: "20/03/2026",
-    tag: "AI",
-    slug: "humanoid-robot-inflection-point",
-    image: "/blog/humanoid-robots.jpg"
-  },
-  {
-    title: "Jordi Visser's \"Turbulence Model\" and Why the Next Rally Starts in Private Credit",
-    excerpt: "Jordi Visser has identified the exact mechanism that could trigger Bitcoin's next major supercycle — and it's hiding in a place most crypto investors aren't even looking.",
-    date: "20/03/2026",
-    tag: "Macro",
-    slug: "jordi-visser-turbulence-model"
-  },
-  {
-    title: "Why I Built the Earnings Call Analyzer (And Why You Need It)",
-    excerpt: "I'm not a Wall Street analyst. I'm a former ultra-endurance athlete from Taranaki, NZ. So what the hell am I doing building financial intelligence tools? Here's the story.",
-    date: "20/03/2026",
-    tag: "AI",
-    slug: "why-i-built-earnings-call-analyzer"
-  },
-  {
-    title: "The Technology is Inevitable. Are We Ready?",
-    excerpt: "AI, Bitcoin, and the refrigeration moment — why this disruption is different, what it means for New Zealand, and how to position yourself on the right side of it.",
-    date: "20/03/2026",
-    tag: "Tech",
-    slug: "bitcoin-ai-refrigeration-moment"
-  }
-];
+const allPosts = await Astro.glob('./blog/*.astro');
+const posts = allPosts
+  .filter(p => p.frontmatter)
+  .map(p => p.frontmatter)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const formatDate = (iso) => {
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+};
 ---
 
 <Base title="Blog">
@@ -165,7 +24,14 @@ const posts = [
 
     <div class="grid md:grid-cols-3 gap-6">
       {posts.map(post => (
-        <BlogCard {...post} />
+        <BlogCard
+          title={post.title}
+          excerpt={post.description}
+          date={formatDate(post.date)}
+          tag={post.tags[0]}
+          slug={post.slug}
+          image={post.image}
+        />
       ))}
     </div>
   </section>
