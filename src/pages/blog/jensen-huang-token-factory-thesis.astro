@@ -1,0 +1,181 @@
+---
+import Base from '../../layouts/Base.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+
+export const frontmatter = {
+  title: "What Jensen Huang Has Been Telling Us For Six Months",
+  description: "The Token Factory thesis — across eight major appearances and twelve hours of recorded conversation, four ideas keep surfacing. Here's the framework that will shape the next decade.",
+  image: "/blog/jensen-huang-five-layer-cake.webp",
+  date: "2026-05-01",
+  tags: ["AI", "Macro", "Nvidia"],
+  slug: "jensen-huang-token-factory-thesis"
+};
+---
+
+<Base
+  title="What Jensen Huang Has Been Telling Us For Six Months"
+  description="The Token Factory thesis — across eight major appearances and twelve hours of recorded conversation, four ideas keep surfacing. Here's the framework that will shape the next decade."
+  image="/blog/jensen-huang-five-layer-cake.webp"
+  article={{ datePublished: "2026-05-01", headline: "What Jensen Huang Has Been Telling Us For Six Months" }}
+>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+
+    <a href="/blog" class="inline-flex items-center gap-2 font-mono text-accent text-sm hover:underline mb-10 block">
+      &larr; Back to all posts
+    </a>
+
+    <div class="mb-10">
+      <div class="flex flex-wrap gap-3 items-center mb-4">
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">AI</span>
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">Macro</span>
+        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full font-mono">Nvidia</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        What Jensen Huang Has Been Telling Us For Six Months
+      </h1>
+      <p class="text-xl text-gray-400 mb-6">The Token Factory thesis — and why every single industry should be paying attention.</p>
+      <div class="flex items-center gap-4 text-gray-400 text-sm border-t border-white/10 pt-6">
+        <span>Lisa Tamati</span>
+        <span class="text-white/20">|</span>
+        <span>01/05/2026</span>
+      </div>
+    </div>
+
+    <div class="mb-12 rounded-2xl overflow-hidden border border-white/10">
+      <img
+        src="/blog/jensen-huang-five-layer-cake.webp"
+        alt="The Five-Layer Cake of the AI economy — energy, chips, cloud, models, and applications stacked as an industrial pyramid"
+        class="w-full object-cover"
+      />
+    </div>
+
+    <div class="space-y-6 text-gray-300 leading-relaxed">
+
+      <p class="text-sm italic text-gray-500">Part 1 of 2 — Part 2: The Buy/Avoid/Watch Brief follows with the trade signals.</p>
+
+      <p>If you want to understand where the next decade of capital is going, you don't read research reports. You read what Jensen Huang says.</p>
+
+      <p>Over the last six months, the CEO of Nvidia — now the most valuable company in the world — has done something rare. He has gone on a sustained public tour. CES in January. Davos with Larry Fink later that week. The GTC keynote in March. Two and a half hours with Lex Fridman. A combative one hundred and three minute sit-down with Dwarkesh Patel in April. A Stanford panel last week.</p>
+
+      <p>Eight major appearances. Roughly twelve hours of recorded conversation. And across all of it, four ideas keep surfacing in slightly different shapes.</p>
+
+      <p>I'm going to walk you through them. Not because I think you should buy Nvidia stock — that's the next post — but because these four ideas describe the framework that will shape healthcare, energy, manufacturing, content, education, and probably your day-to-day work over the next decade. If you understand them, the news cycle stops feeling like noise and starts feeling like a map.</p>
+
+      <p>Let's get into it.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mt-10 mb-4">Idea 1: The data center is not a warehouse anymore. It's a factory.</h2>
+
+      <p>This is Jensen's central reframe and the one thing I want you to take from this post.</p>
+
+      <p>For the last forty years, computers have done one thing well: store information and retrieve it on demand. You typed something into a keyboard, it got saved into a file, and later either you or someone else pulled it back up. That was the entire job. Even the cloud, in its first phase, was just a warehouse with better logistics.</p>
+
+      <p>What Jensen says is this: that era is over. Computers are no longer in the storage business. They are in the manufacturing business. The thing being manufactured is something called a token — basically a unit of machine-generated thought — and the price of those tokens varies by quality and speed.</p>
+
+      <p>He went so far at GTC as to publish a price sheet:</p>
+
+      <ul class="list-disc list-inside space-y-2 pl-2">
+        <li><strong class="text-white">Free tier</strong> — high volume, slow. Think basic chatbot answers.</li>
+        <li><strong class="text-white">Intermediate</strong> — about three dollars per million tokens.</li>
+        <li><strong class="text-white">Advanced</strong> — about six dollars per million.</li>
+        <li><strong class="text-white">High-speed</strong> — forty-five dollars per million.</li>
+        <li><strong class="text-white">Ultra-high-speed</strong> — one hundred and fifty dollars per million.</li>
+      </ul>
+
+      <p>That last tier is fifty times the price of the intermediate one. Same underlying intelligence, just delivered faster, with lower latency. And that gap exists because real workers — software engineers using tools like Cursor or Claude Code — will pay enormous premiums for fast, smart responses, because their own time is more valuable.</p>
+
+      <p>Why does this matter outside finance? Because it tells you exactly where the money will flow. If a data center is now a factory whose output has a market price, then every gigawatt of power, every square metre of floor space, every cooling pipe, every networking cable becomes a unit of production capacity in an industrial process. That is the most important shift in computing since the personal computer arrived in the 1980s. And we're three years into it.</p>
+
+      <p>For practitioners — and this is where I sit professionally — it means something concrete. The functional health space, the longevity space, the diagnostics space, the genetics space — every part of healthcare that runs on data is going to get rebuilt around this token-factory model. AI radiology, AI drug discovery, AI clinical decision support — these are not science fiction. They are buying decisions being made right now by every major hospital system on earth.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mt-10 mb-4">Idea 2: One trillion dollars. Through 2027. And he says it's conservative.</h2>
+
+      <p>Last year at GTC, Jensen told the room he had high-confidence visibility on five hundred billion dollars of AI infrastructure demand through 2026.</p>
+
+      <p>This year at GTC, he updated that number. One trillion dollars through 2027. The stock pumped four percent on the headline alone.</p>
+
+      <p>But the more important line came in the press briefing afterwards. He clarified that the trillion-dollar number does not include standalone CPUs, the new Groq inference chips, storage systems, or the next-generation Feynman platform. So the actual visibility is materially higher than the headline. And he repeated, in three separate venues, <em>"I'm convinced the actual computing demand will be much higher than that."</em></p>
+
+      <p>What does that look like physically? At Davos he walked Larry Fink through the buildout in real numbers:</p>
+
+      <ul class="list-disc list-inside space-y-2 pl-2">
+        <li>TSMC is building twenty new chip plants.</li>
+        <li>Foxconn, Wistron, and Quanta together are building thirty new computer assembly plants.</li>
+        <li>Micron has committed two hundred billion dollars to U.S. memory manufacturing.</li>
+        <li>Samsung and SK Hynix are scaling at "unprecedented" pace.</li>
+      </ul>
+
+      <p>This is the largest infrastructure buildout in human history. Larger than the railroads. Larger than rural electrification. Larger than the post-war American highway system. And it is happening now, in real time, while the financial press is still arguing about whether AI is a bubble.</p>
+
+      <p>I want to make a point here that connects to what we talk about on this site and on the podcast. Whenever a buildout of this scale happens, the people who do best are the people building physical things. Plumbers. Electricians. Steel workers. HVAC engineers. Network technicians. Jensen made this point three different times across the six months — these are the actual bottleneck on AI scaling. He literally said at one point, <em>"I went to the hardest one — plumbers and electricians."</em></p>
+
+      <p>So if you are advising someone on career direction, or training your own children, the trade school path is having a moment that is not yet fully appreciated. Six-figure salaries are showing up for skilled trades adjacent to data center construction. That window is open right now.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mt-10 mb-4">Idea 3: The Five-Layer Cake. This is how Jensen sees the entire opportunity.</h2>
+
+      <p>This is his mental model for the AI economy. He uses it on every single appearance, in basically the same words. Worth memorising.</p>
+
+      <ul class="list-disc list-inside space-y-2 pl-2">
+        <li><strong class="text-white">Energy</strong> — the bottom layer. Power generation, transmission, grid flexibility, nuclear including small modular reactors.</li>
+        <li><strong class="text-white">Chips and computing infrastructure</strong> — the silicon. Nvidia's home turf, but also TSMC, Samsung, SK Hynix, Micron, the optical and packaging supply chain.</li>
+        <li><strong class="text-white">Cloud infrastructure</strong> — the hyperscalers (Microsoft, Amazon, Google, Oracle) plus the new AI-native clouds (CoreWeave, Lambda, Crusoe, Nscale, Nebius).</li>
+        <li><strong class="text-white">AI models</strong> — the foundation models from OpenAI, Anthropic, Google, plus open source players including Meta and the Chinese labs.</li>
+        <li><strong class="text-white">Application layer</strong> — the top. Where actual economic value gets captured. Healthcare AI, biotech, finance, robotics, education, content, your business and mine.</li>
+      </ul>
+
+      <p>His point — repeated explicitly — is that every layer matters and every layer has to succeed. But the most economic value will accrue at the top, in the application layer. Which is why he is so vocal about open source and so unwilling to concede China.</p>
+
+      <p>For our world specifically — health practice, longevity, biotech — we are squarely in layer five. The interesting question is not "should I invest in Nvidia." The interesting question is "what does my practice, my product, my podcast, my newsletter look like when every single client and listener has an AI agent that can read, schedule, research, and synthesise on their behalf?" That's two years out, max. Probably one.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mt-10 mb-4">Idea 4: The agent is the iPhone of tokens. And every SaaS company is about to die or transform.</h2>
+
+      <p>This is the section that matters most for entrepreneurs and operators.</p>
+
+      <p>Jensen called the agentic moment — driven by tools like OpenClaw, Claude Code, Codex, and Cursor — the "iPhone of tokens." Meaning: the moment that converts AI from a curiosity used by tech early adopters into something every consumer touches every day.</p>
+
+      <p>Then he made a far more provocative call. <em>"Every SaaS company will become an AaaS company."</em> Agent-as-a-Service. Instead of selling you a tool that you operate, software companies will sell you an agent that operates the tool on your behalf.</p>
+
+      <p>This is the most under-appreciated trade idea coming out of Jensen's six months of public speaking, and it should be giving every software CEO in the world a sleepless night. The implication is brutal: SaaS companies that successfully shift from "we sell you a piece of software you log into" to "we sell you an agent that does the work" will rerate higher. The ones that don't will get hollowed out from underneath as users send their agents directly to whichever underlying system has the cheapest tokens.</p>
+
+      <p>For our businesses — and I'm thinking about Aevum Labs, the supplement store, the podcast operation, all of it — this is not a problem. It's an opportunity. Small businesses with tight customer relationships, real expertise, and a willingness to integrate agents into their operations actually win in this transition. The losers are the bloated middle-tier SaaS companies whose entire moat was "we have a slightly better dashboard."</p>
+
+      <p>Jensen offered one specific prediction worth quoting: he said that in the near future, every engineer at Nvidia will receive an annual token budget as part of their compensation, on top of salary. He said, <em>"How many tokens does your offer include?"</em> is becoming the new Silicon Valley hiring question. That sounded absurd to me the first time I read it. Then I thought about how I already pay for my own AI subscriptions and how much more productive I am because of them, and I stopped laughing.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mt-10 mb-4">What this all means for the rest of us</h2>
+
+      <p>If you've read this far, here's the synthesis.</p>
+
+      <p>We are in the middle of an industrial transformation that is faster than the internet rollout, larger than the telecom buildout, and more energy-intensive than anything that has come before it. The shape of it is clear enough to plan around. The five layers are stable. The trillion-dollar capex commitment is real. The agentic transition is happening at consumer-grade speed. And the geopolitical fight over the chip supply chain is the defining trade story of the decade.</p>
+
+      <p>What I'd ask you to do, if you are running anything — a clinic, a product, a podcast, a portfolio, a household — is sit with the four ideas above for a week and ask:</p>
+
+      <ul class="list-disc list-inside space-y-2 pl-2">
+        <li><strong class="text-white">Where in my work am I still operating on the warehouse model?</strong> What process, file, or workflow am I treating as static when it should be dynamic and agent-driven?</li>
+        <li><strong class="text-white">What in my life or business benefits from being closer to layer five?</strong> Where is my unfair advantage in the application layer, given that the bottom four are commoditising?</li>
+        <li><strong class="text-white">What skill do I want my children, my staff, or myself to develop in the next twelve months that compounds in this world?</strong></li>
+        <li><strong class="text-white">What infrastructure am I not investing in that I should be?</strong> Energy, manufacturing, real things made of metal and silicon.</li>
+      </ul>
+
+      <p>In Part 2, I'll get into the specific names, the specific catalysts, and the specific buy-avoid-watch list that comes out of all this. That's the trade post. This was the framework post.</p>
+
+      <p>The framework matters more.</p>
+
+      <hr class="border-white/10 my-10" />
+
+      <p class="text-sm italic text-gray-400">Lisa Tamati is the host of Pushing the Limits, co-founder of Aevum Labs, and the publisher of PTL Signal. She is a former elite ultra-endurance athlete and the author of four books, most recently Relentless.</p>
+
+      <p class="text-sm italic text-gray-400">Nothing in this post is financial advice. It's a framework for thinking. The trade post that follows is also not financial advice. Make your own decisions, ideally with someone who knows your specific situation.</p>
+
+    </div>
+    <NewsletterSignup variant="blog" />
+  </article>
+</Base>
