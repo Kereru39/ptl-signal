@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Visser Scarcity Tracker — PTL Signal</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --text: #e2e2f0;
+    --muted: #6b6b8a;
+    --buy: #00d084;
+    --watch: #f5a623;
+    --trim: #ff4757;
+    --neutral: #4a4a6a;
+    --accent: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'Fira Code', monospace; min-height: 100vh; }
+  
+  .header { padding: 2rem 2rem 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+  .header-left h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
+  .header-left p { font-size: 0.7rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .last-update { font-size: 0.65rem; color: var(--muted); }
+  .refresh-btn { font-size: 0.7rem; padding: 6px 14px; background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s; }
+  .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border-bottom: 1px solid var(--border); background: var(--border); }
+  .sum-cell { background: var(--bg); padding: 1.2rem 2rem; }
+  .sum-num { font-size: 2rem; font-weight: 700; line-height: 1; }
+  .sum-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .sum-cell.buy .sum-num { color: var(--buy); }
+  .sum-cell.watch .sum-num { color: var(--watch); }
+  .sum-cell.trim .sum-num { color: var(--trim); }
+  .sum-cell.neutral .sum-num { color: var(--muted); }
+
+  .legend { padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .leg { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em; }
+  .leg-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  .tabs { display: flex; overflow-x: auto; border-bottom: 1px solid var(--border); padding: 0 2rem; gap: 0; }
+  .tab { font-size: 0.7rem; padding: 0.75rem 1rem; cursor: pointer; white-space: nowrap; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  .theme-desc { padding: 0.75rem 2rem; font-size: 0.7rem; color: var(--muted); border-bottom: 1px solid var(--border); line-height: 1.6; font-family: -apple-system, sans-serif; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); padding: 0; }
+  .card { background: var(--surface); padding: 1.2rem 1.4rem; position: relative; transition: background 0.15s; }
+  .card:hover { background: #16161f; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .ticker { font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; color: var(--text); }
+  .name { font-size: 0.6rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+  .badge { font-size: 0.55rem; font-weight: 700; padding: 3px 8px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; white-space: nowrap; }
+  .badge-buy { background: rgba(0,208,132,0.15); color: var(--buy); }
+  .badge-watch { background: rgba(245,166,35,0.15); color: var(--watch); }
+  .badge-trim { background: rgba(255,71,87,0.15); color: var(--trim); }
+  .badge-neutral { background: rgba(74,74,106,0.2); color: var(--muted); }
+  .badge-loading { background: var(--border); color: var(--muted); }
+
+  .price { font-size: 1.3rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.6rem; }
+  .chg { font-size: 0.7rem; }
+  .chg-pos { color: var(--buy); }
+  .chg-neg { color: var(--trim); }
+
+  .bar-wrap { margin-bottom: 0.75rem; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 0.6rem; color: var(--muted); margin-bottom: 3px; }
+  .bar-bg { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 1px; transition: width 0.6s ease; }
+
+  .stats { display: flex; gap: 0.75rem; }
+  .stat { flex: 1; }
+  .stat-label { font-size: 0.55rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 2px; }
+  .stat-val { font-size: 0.7rem; color: var(--text); }
+
+  .tv-link { display: block; margin-top: 0.75rem; font-size: 0.6rem; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.15s; }
+  .tv-link:hover { color: var(--accent); }
+
+  .disclaimer { padding: 1.5rem 2rem; font-size: 0.6rem; color: var(--muted); border-top: 1px solid var(--border); line-height: 1.6; }
+
+  @media (max-width: 600px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 1rem; }
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Visser Scarcity Tracker</h1>
+    <p>Jordi Visser's thematic baskets — Pomp · Wealthion · Raoul Pal · Substack (Jan–Apr 2026)</p>
+  </div>
+  <div class="header-right">
+    <div class="last-update" id="lastUpdate">Loading…</div>
+    <button class="refresh-btn" onclick="fetchAll()">Refresh</button>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="sum-cell buy"><div class="sum-num" id="s-buy">—</div><div class="sum-label">Buy zone</div></div>
+  <div class="sum-cell watch"><div class="sum-num" id="s-watch">—</div><div class="sum-label">Watch</div></div>
+  <div class="sum-cell trim"><div class="sum-num" id="s-trim">—</div><div class="sum-label">Trim</div></div>
+  <div class="sum-cell neutral"><div class="sum-num" id="s-neutral">—</div><div class="sum-label">Neutral</div></div>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--buy)"></div>Buy zone — &gt;15% off 52w high, above 200d MA</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--watch)"></div>Watch — 8–15% pullback</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--trim)"></div>Trim — extended, near 52w high</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--muted)"></div>Neutral</div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="theme-desc" id="themeDesc"></div>
+<div class="grid" id="grid"></div>
+
+<div class="disclaimer">
+  Educational synthesis of Jordi Visser's public podcast/Substack commentary. Not investment advice. 
+  Prices via Yahoo Finance — may be 15–20 min delayed. PTL Signal — ptlsignal.com
+</div>
+
+<script>
+const BASKETS = [
+  { name:'Semis & compute', desc:"Blackwell deployment is the gateway to embodied AI. Demand for compute is 'insatiable' for 5+ years. Memory and CPU bottlenecks are the new oil shock.",
+    tickers:[['NVDA','NVIDIA'],['TSM','TSMC'],['AVGO','Broadcom'],['AMD','AMD'],['MU','Micron'],['TER','Teradyne'],['COHR','Coherent'],['SMH','VanEck Semis ETF']] },
+  { name:'Power & energy', desc:"Power is the binding constraint on AI. Grid build-out, nuclear renaissance, natural gas turbines. Visser: 'You want to be focused on energy.'",
+    tickers:[['GEV','GE Vernova'],['VST','Vistra'],['CEG','Constellation Energy'],['TLN','Talen Energy'],['ETN','Eaton'],['NEE','NextEra Energy'],['CCJ','Cameco'],['URA','Global X Uranium ETF'],['XLU','Utilities ETF']] },
+  { name:'Optical fiber', desc:'Datacenter interconnect is a hidden bottleneck. Visser repeatedly cited Corning. Optical components are the picks-and-shovels of hyperscaler buildouts.',
+    tickers:[['GLW','Corning'],['LITE','Lumentum'],['CIEN','Ciena'],['ANET','Arista Networks'],['FN','Fabrinet']] },
+  { name:'Chemicals & materials', desc:"Chemical stocks 'undervalued given current oil dynamics'. Bottlenecks spreading from memory to chemicals. Industrial gases, specialty chems for semis and EV supply chains.",
+    tickers:[['LIN','Linde'],['APD','Air Products'],['DD','DuPont'],['ECL','Ecolab'],['ALB','Albemarle'],['FCX','Freeport-McMoRan'],['XLB','Materials ETF']] },
+  { name:'Rack infrastructure', desc:'Datacenter mechanicals — cooling, racks, liquid systems, power distribution. The picks-and-shovels for the hyperscaler capex super-cycle.',
+    tickers:[['VRT','Vertiv'],['DLR','Digital Realty'],['EQIX','Equinix'],['DELL','Dell']] },
+  { name:'Embodied AI', desc:"2026 is the year hardware takes over from software. Robotaxi without safety driver in Austin = 'the pixelization of AI'.",
+    tickers:[['TSLA','Tesla'],['AAPL','Apple'],['IWM','Russell 2000']] },
+  { name:'Bitcoin & crypto', desc:"Bitcoin = purest AI trade. Wins in inflation AND deflation. The IGV outperformers this month were 'almost all crypto-related names'.",
+    tickers:[['BTC-USD','Bitcoin'],['ETH-USD','Ethereum'],['COIN','Coinbase'],['MSTR','Strategy'],['IBIT','iShares Bitcoin ETF'],['MARA','Marathon'],['CLSK','CleanSpark']] },
+];
+
+let activeTab = 0;
+let cache = {};
+
+function signal(price, high52, rsi, aboveMA200) {
+  const pct = (high52 - price) / high52 * 100;
+  if (pct >= 15 && aboveMA200) return 'buy';
+  if (pct >= 8) return 'watch';
+  if (pct <= 2) return 'trim';
+  return 'neutral';
+}
+
+function calcRSI(closes, period=14) {
+  if (closes.length < period+1) return null;
+  const deltas = closes.slice(1).map((c,i) => c - closes[i]);
+  const gains = deltas.map(d => d>0?d:0);
+  const losses = deltas.map(d => d<0?-d:0);
+  let ag = gains.slice(0,period).reduce((a,b)=>a+b,0)/period;
+  let al = losses.slice(0,period).reduce((a,b)=>a+b,0)/period;
+  for (let i=period; i<gains.length; i++) {
+    ag = (ag*(period-1)+gains[i])/period;
+    al = (al*(period-1)+losses[i])/period;
+  }
+  if (al===0) return 100;
+  return Math.round(100 - (100/(1+ag/al)));
+}
+
+async function fetchTicker(sym) {
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=1y`;
+    const r = await fetch(url, {headers:{Accept:'application/json'}});
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    const result = d.chart.result[0];
+    const meta = result.meta;
+    const q = result.indicators.quote[0];
+    const closes = q.close.filter(Boolean);
+    const highs = q.high.filter(Boolean);
+    const price = meta.regularMarketPrice || closes[closes.length-1];
+    const high52 = Math.max(...highs);
+    const prev = meta.chartPreviousClose || closes[closes.length-2];
+    const chg = prev ? (price-prev)/prev*100 : 0;
+    const ma200 = closes.slice(-200).reduce((a,b)=>a+b,0)/Math.min(closes.length,200);
+    const rsi = calcRSI(closes);
+    return {price, high52, chg, ma200, rsi, aboveMA200: price>=ma200, ok:true};
+  } catch(e) { return {ok:false}; }
+}
+
+function fmt(n) {
+  if (!n) return '—';
+  if (n>=1000) return '$'+(n/1000).toFixed(1)+'k';
+  if (n>=1) return '$'+n.toFixed(2);
+  return '$'+n.toFixed(4);
+}
+
+function sigClass(s) { return {buy:'badge-buy',watch:'badge-watch',trim:'badge-trim',neutral:'badge-neutral'}[s]||'badge-loading'; }
+function sigLabel(s) { return {buy:'Buy zone',watch:'Watch',trim:'Trim',neutral:'Neutral'}[s]||'…'; }
+function barColor(s) { return {buy:'var(--buy)',watch:'var(--watch)',trim:'var(--trim)',neutral:'var(--muted)'}[s]||'var(--border)'; }
+
+function renderCards() {
+  const basket = BASKETS[activeTab];
+  document.getElementById('themeDesc').textContent = basket.desc;
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  basket.tickers.forEach(([sym, name]) => {
+    const d = cache[sym];
+    const card = document.createElement('div');
+    card.className = 'card';
+    if (!d || !d.ok) {
+      card.innerHTML = `<div class="card-top"><div><div class="ticker">${sym}</div><div class="name">${name}</div></div><span class="badge badge-loading">…</span></div><div class="price">—</div>`;
+    } else {
+      const sig = signal(d.price, d.high52, d.rsi, d.aboveMA200);
+      const pct = ((d.high52-d.price)/d.high52*100);
+      const barW = Math.min(100, Math.max(0, pct));
+      const rsiStr = d.rsi ? d.rsi : '—';
+      const maStr = d.aboveMA200 ? 'above MA200' : 'below MA200';
+      card.innerHTML = `
+        <div class="card-top">
+          <div><div class="ticker">${sym}</div><div class="name">${name}</div></div>
+          <span class="badge ${sigClass(sig)}">${sigLabel(sig)}</span>
+        </div>
+        <div class="price-row">
+          <div class="price">${fmt(d.price)}</div>
+          <div class="chg ${d.chg>=0?'chg-pos':'chg-neg'}">${d.chg>=0?'+':''}${d.chg.toFixed(1)}%</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-label"><span>off high</span><span>${pct.toFixed(1)}%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:${barW}%;background:${barColor(sig)}"></div></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-label">52w high</div><div class="stat-val">${fmt(d.high52)}</div></div>
+          <div class="stat"><div class="stat-label">RSI(14)</div><div class="stat-val">${rsiStr}</div></div>
+          <div class="stat"><div class="stat-label">MA200</div><div class="stat-val">${maStr}</div></div>
+        </div>
+        <a class="tv-link" href="https://www.tradingview.com/chart/?symbol=${sym}" target="_blank">Open in TradingView →</a>`;
+    }
+    grid.appendChild(card);
+  });
+}
+
+function updateSummary() {
+  let buy=0,watch=0,trim=0,neutral=0;
+  BASKETS.forEach(b => b.tickers.forEach(([sym]) => {
+    const d = cache[sym];
+    if (!d||!d.ok) return;
+    const s = signal(d.price,d.high52,d.rsi,d.aboveMA200);
+    if(s==='buy')buy++; else if(s==='watch')watch++; else if(s==='trim')trim++; else neutral++;
+  }));
+  document.getElementById('s-buy').textContent = buy;
+  document.getElementById('s-watch').textContent = watch;
+  document.getElementById('s-trim').textContent = trim;
+  document.getElementById('s-neutral').textContent = neutral;
+}
+
+function buildTabs() {
+  const tabs = document.getElementById('tabs');
+  BASKETS.forEach((b,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab'+(i===0?' active':'');
+    btn.textContent = b.name;
+    btn.onclick = () => {
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      btn.classList.add('active');
+      activeTab = i;
+      renderCards();
+    };
+    tabs.appendChild(btn);
+  });
+}
+
+async function fetchAll() {
+  document.getElementById('lastUpdate').textContent = 'Fetching…';
+  const allSyms = [...new Set(BASKETS.flatMap(b=>b.tickers.map(t=>t[0])))];
+  await Promise.all(allSyms.map(async sym => { cache[sym] = await fetchTicker(sym); }));
+  renderCards();
+  updateSummary();
+  const now = new Date();
+  document.getElementById('lastUpdate').textContent = `Updated ${now.toLocaleTimeString('en-NZ')} — prices may be delayed`;
+}
+
+buildTabs();
+document.getElementById('themeDesc').textContent = BASKETS[0].desc;
+fetchAll();
+</script>
+</body>
+</html>
