@@ -183,7 +183,7 @@ async function fetchTicker(sym) {
     const highs = q.high.filter(Boolean);
     const price = meta.regularMarketPrice || closes[closes.length-1];
     const high52 = Math.max(...highs);
-    const prev = meta.chartPreviousClose || closes[closes.length-2];
+    const prev = closes[closes.length-2] || closes[closes.length-1];
     const chg = prev ? (price-prev)/prev*100 : 0;
     const ma200 = closes.slice(-200).reduce((a,b)=>a+b,0)/Math.min(closes.length,200);
     const rsi = calcRSI(closes);
